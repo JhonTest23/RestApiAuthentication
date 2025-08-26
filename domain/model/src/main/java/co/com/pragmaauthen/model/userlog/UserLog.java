@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserLog {
-    private Integer id;
+    private String id;
     private User user;
     private String action;   // e.g., LOGIN, LOGOUT, UPDATE
     private String timestamp;

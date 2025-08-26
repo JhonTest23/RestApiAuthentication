@@ -2,6 +2,7 @@ package co.com.pragmaauthen.api;
 
 import co.com.pragmaauthen.model.user.User;
 import co.com.pragmaauthen.usecase.user.UserUseCase;
+import co.com.pragmaauthen.usecase.userlog.UserLogUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -14,10 +15,12 @@ import reactor.core.publisher.Mono;
 public class Handler {
 
     private final UserUseCase userUseCase;
+    private final UserLogUseCase userLogUseCase;
 
     public Mono<ServerResponse> saveUser(ServerRequest request) {
         return request.bodyToMono(User.class)
                 .flatMap(userUseCase::saveUser)
+//                .flatMap(userLogUseCase::saveUserLog)
                 .flatMap(user -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .bodyValue(user));
