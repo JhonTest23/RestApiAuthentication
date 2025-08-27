@@ -19,20 +19,18 @@ public class UserData {
     @Id
     @Column("id_usuario")
     private String id;
-    @NonNull
     private  String nombres;
-    @NonNull
     private  String apellidos;
-    private String fecha_nacimiento;
+    @Column("fecha_nacimiento")
+    private String fechaNacimiento;
     private  String direccion;
     private  Integer telefono;
     @Email(message = "Correo electrónico inválido")
     @NotBlank(message = "El correo electrónico es obligatorio")
     @Column("correo_electronico")
-    @NonNull
     private  String email;
-    @NonNull
     @DecimalMin(value = "0.0", inclusive = true, message = "El salario no puede ser menor que 0")
     @DecimalMax(value = "15000000.0", inclusive = true, message = "El salario no puede ser mayor a 15,000,000")
-    private  double salario_base;
+    @Column("salario_base")
+    private  double salarioBase;
 }

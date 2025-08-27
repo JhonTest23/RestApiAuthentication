@@ -10,9 +10,9 @@ public class User {
     private String id;
     private  String nombres;
     private  String apellidos;
-    private String fecha_nacimiento;
+    private String fechaNacimiento;
     private  String direccion;
     private  Integer telefono;
     private  String email;
-    private  double salario_base;
+    private  double salarioBase;
 }

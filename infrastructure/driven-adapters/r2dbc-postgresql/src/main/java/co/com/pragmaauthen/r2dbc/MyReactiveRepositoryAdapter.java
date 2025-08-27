@@ -32,4 +32,36 @@ public class MyReactiveRepositoryAdapter extends ReactiveAdapterOperations<
         return super.save(user);
     }
 
+    @Override
+    public Mono<User> findByEmail(String email) {
+        return repository.findByEmail(email)
+                .map(this::toEntity);
+    }
+
+    protected User toEntity(UserData data) {
+        return User.builder()
+                .id(data.getId())
+                .nombres(data.getNombres())
+                .apellidos(data.getApellidos())
+                .fechaNacimiento(data.getFechaNacimiento())
+                .direccion(data.getDireccion())
+                .telefono(data.getTelefono())
+                .email(data.getEmail().toLowerCase())
+                .salarioBase(data.getSalarioBase())
+                .build();
+    }
+
+    protected UserData toData(User user) {
+        return UserData.builder()
+                .id(user.getId())
+                .nombres(user.getNombres())
+                .apellidos(user.getApellidos())
+                .fechaNacimiento(user.getFechaNacimiento())
+                .direccion(user.getDireccion())
+                .telefono(user.getTelefono())
+                .email(user.getEmail().toLowerCase())
+                .salarioBase(user.getSalarioBase())
+                .build();
+    }
+
 }

@@ -22,16 +22,12 @@ management:
         enabled: true
 cors:
   allowed-origins: "http://localhost:4200,http://localhost:8080"
-#routes:
-#  paths:
-#    tasks: "/api/v1/tasks"
-#    tasksById: "/api/v1/tasks/{id}"
 
 adapters:
   r2dbc:
-    host: "localhost"
-    port: 5432
-    database: "PragmaDB"
+    host: ${R2DBC_HOST}
+    port: ${R2DBC_PORT}
+    database: ${DATASOURCE_DB}
     schema: "public"
-    username: "postgres"
-    password: "p*5tgr35q1"
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
