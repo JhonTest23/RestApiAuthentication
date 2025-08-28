@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-    private String id;
+    private Integer id;
     private  String nombres;
     private  String apellidos;
     private String fechaNacimiento;

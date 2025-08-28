@@ -14,7 +14,7 @@ import lombok.*;
 public class MyReactiveRepositoryAdapter extends ReactiveAdapterOperations<
         User/* change for domain model */,
         UserData/* change for adapter model */,
-        String,
+        Integer,
     MyReactiveRepository
 > implements UserRepository {
     public MyReactiveRepositoryAdapter(MyReactiveRepository repository, ObjectMapper mapper) {

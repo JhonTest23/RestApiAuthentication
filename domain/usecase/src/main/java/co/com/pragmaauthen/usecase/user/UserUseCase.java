@@ -10,21 +10,16 @@ import lombok.*;
 public class UserUseCase {
     private final UserRepository userRepository;
 
-//    public Mono<User> saveUser(User user) {
-//        return userRepository.save(user);
-//    }
-
     public Mono<User> saveUser(User user) {
-        // normalize email to lowercase
-        String normalizedEmail = user.getEmail().toLowerCase();
+        User userNormalized = normalizedEmail(user);
 
-        // rebuild the user with normalized email
-        User userNormalized = user.toBuilder()
-                .email(normalizedEmail)
-                .build();
-
-        return userRepository.findByEmail(user.getEmail())
+        return userRepository.findByEmail(userNormalized.getEmail())
                 .flatMap(existing -> Mono.<User>error(new IllegalArgumentException("Email already exists")))
-                .switchIfEmpty(userRepository.save(user));
+                .switchIfEmpty(userRepository.save(userNormalized));
+    }
+
+    private User normalizedEmail(User user){
+        user.setEmail(user.getEmail().toLowerCase());
+        return user;
     }
 }

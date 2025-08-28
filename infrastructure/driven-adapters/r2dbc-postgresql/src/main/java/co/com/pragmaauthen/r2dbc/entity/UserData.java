@@ -18,7 +18,7 @@ import jakarta.validation.constraints.NotBlank;
 public class UserData {
     @Id
     @Column("id_usuario")
-    private String id;
+    private Integer id;
     private  String nombres;
     private  String apellidos;
     @Column("fecha_nacimiento")
