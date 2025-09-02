@@ -1,17 +1,15 @@
 package co.com.pragmaauthen.model.role;
-import lombok.Builder;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-//import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 
 @Getter
 @Setter
-//@NoArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class Role {
-    public int id_rol;
-    public String nombre;
-    public String descripcion;
+    private Integer id;
+    private String nombre;
+    private String descripcion;
+    private Boolean activo;
 }

@@ -8,11 +8,15 @@ import lombok.*;
 @AllArgsConstructor
 public class User {
     private Integer id;
-    private  String nombres;
-    private  String apellidos;
+    private String documentoIdentidad;
+    private String nombres;
+    private String apellidos;
     private String fechaNacimiento;
-    private  String direccion;
-    private  Integer telefono;
-    private  String email;
-    private  double salarioBase;
+    private String direccion;
+    private Integer telefono;
+    private String email;
+    private Double salarioBase;
+    private Integer idRol;
+    private String contrasena;
+    private Boolean activo;
 }

@@ -41,6 +41,7 @@ public class MyReactiveRepositoryAdapter extends ReactiveAdapterOperations<
     protected User toEntity(UserData data) {
         return User.builder()
                 .id(data.getId())
+                .documentoIdentidad(data.getDocumentoIdentidad())
                 .nombres(data.getNombres())
                 .apellidos(data.getApellidos())
                 .fechaNacimiento(data.getFechaNacimiento())
@@ -48,12 +49,15 @@ public class MyReactiveRepositoryAdapter extends ReactiveAdapterOperations<
                 .telefono(data.getTelefono())
                 .email(data.getEmail().toLowerCase())
                 .salarioBase(data.getSalarioBase())
+                .idRol(data.getIdRol())
+                .contrasena(data.getContrasena())
                 .build();
     }
 
     protected UserData toData(User user) {
         return UserData.builder()
                 .id(user.getId())
+                .documentoIdentidad(user.getDocumentoIdentidad())
                 .nombres(user.getNombres())
                 .apellidos(user.getApellidos())
                 .fechaNacimiento(user.getFechaNacimiento())
@@ -61,6 +65,8 @@ public class MyReactiveRepositoryAdapter extends ReactiveAdapterOperations<
                 .telefono(user.getTelefono())
                 .email(user.getEmail().toLowerCase())
                 .salarioBase(user.getSalarioBase())
+                .idRol(user.getIdRol())
+                .contrasena(user.getContrasena())
                 .build();
     }
 

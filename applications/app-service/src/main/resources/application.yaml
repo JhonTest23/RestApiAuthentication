@@ -11,6 +11,9 @@ spring:
       path: "/h2"
   profiles:
     include: null
+  jwt:
+    secret: "4749f898-788d-4be2-bae3-819980ac5f03"
+    expiration: 900000
 management:
   endpoints:
     web:
@@ -22,7 +25,10 @@ management:
         enabled: true
 cors:
   allowed-origins: "http://localhost:4200,http://localhost:8080"
-
+logging:
+  level:
+    org.springframework.r2dbc: DEBUG
+    io.r2dbc.postgresql: DEBUG
 adapters:
   r2dbc:
     host: ${R2DBC_HOST}

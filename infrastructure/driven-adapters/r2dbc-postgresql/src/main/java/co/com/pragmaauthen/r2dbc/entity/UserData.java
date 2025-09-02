@@ -19,6 +19,8 @@ public class UserData {
     @Id
     @Column("id_usuario")
     private Integer id;
+    @Column("documento_identidad")
+    private String documentoIdentidad;
     private  String nombres;
     private  String apellidos;
     @Column("fecha_nacimiento")
@@ -32,5 +34,9 @@ public class UserData {
     @DecimalMin(value = "0.0", inclusive = true, message = "El salario no puede ser menor que 0")
     @DecimalMax(value = "15000000.0", inclusive = true, message = "El salario no puede ser mayor a 15,000,000")
     @Column("salario_base")
-    private  double salarioBase;
+    private  Double salarioBase;
+    @Column("id_rol")
+    private Integer idRol;
+    private String contrasena;
+    private Boolean activo;
 }
