@@ -24,10 +24,12 @@ public class JwtUtil {
         this.expirationMillis = expirationMillis;
     }
 
-    public String generateToken(String userId, String role) {
+    public String generateToken(String userId, String role, String email, String fullname) {
         return Jwts.builder()
                 .setSubject(userId)
                 .claim("role", role)
+                .claim("email",email)
+                .claim("fullname", fullname)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + expirationMillis))
                 .signWith(key, SignatureAlgorithm.HS256)

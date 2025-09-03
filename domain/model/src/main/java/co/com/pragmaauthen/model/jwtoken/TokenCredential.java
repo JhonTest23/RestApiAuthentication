@@ -14,4 +14,6 @@ import lombok.Setter;
 public class TokenCredential {
     private String documentoIdentidad;
     private String role;
+    private String email;
+    private String fullname;
 }

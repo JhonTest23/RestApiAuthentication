@@ -48,7 +48,9 @@ public class Handler {
 
                     String token = jwtUtil.generateToken(
                             credential.getDocumentoIdentidad(),
-                            credential.getRole()
+                            credential.getRole(),
+                            credential.getEmail(),
+                            credential.getFullname()
                     );
                     return ServerResponse.ok().bodyValue(new JWToken(token,credential.getDocumentoIdentidad(),credential.getRole()));
                 })

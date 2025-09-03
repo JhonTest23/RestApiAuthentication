@@ -33,7 +33,9 @@ public class LoginUseCase {
                 .switchIfEmpty(Mono.error(new IllegalArgumentException("The role doesn't exist")))
                 .map(role -> TokenCredential.builder()
                         .documentoIdentidad(user.getDocumentoIdentidad()) // lo metes en el token
-                        .role(role.getNombre())                          // también el rol
+                        .role(role.getNombre())
+                        .email(user.getEmail())// también el rol
+                        .fullname(user.getNombres() + " " + user.getApellidos())
                         .build()
                 );
     }
