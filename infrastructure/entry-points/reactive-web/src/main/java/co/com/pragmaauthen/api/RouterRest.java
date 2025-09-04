@@ -36,9 +36,9 @@ public class RouterRest {
                             operationId = "saveUser",
                             summary = "Save an user",
                             tags = {"Users"},
-//                            security = {
-//                                    @SecurityRequirement(name = "bearerAuth")  // <-- 🔑 Requires Bearer Token
-//                            },
+                            security = {
+                                    @SecurityRequirement(name = "bearerAuth")  // <-- 🔑 Requires Bearer Token
+                            },
                             requestBody = @RequestBody(      // <-- here is the magic
                                     description = "JSON body with user data",
                                     required = true,
@@ -53,10 +53,12 @@ public class RouterRest {
                             }
                     )
             ),
+            @RouterOperation(path = "/api/v1/usuarios_emails", beanClass = Handler.class, beanMethod = "getUsersByEmails"),
             @RouterOperation(path = "/api/v3/usuarios", beanClass = Handler.class, beanMethod = "TestUser")
     })
     public RouterFunction<ServerResponse> userRoutes(Handler handler) {
         return route(POST("/api/v1/usuarios"), handler::saveUser)
+                .andRoute(POST("/api/v1/usuarios_emails"), handler::getUsersByEmails)
                 .andRoute(GET("/api/v3/usuarios"), handler::TestUser);
     }
 

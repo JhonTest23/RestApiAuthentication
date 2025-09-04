@@ -3,7 +3,10 @@ package co.com.pragmaauthen.usecase.user;
 import co.com.pragmaauthen.model.user.User;
 import co.com.pragmaauthen.model.user.gateways.UserRepository;
 import lombok.RequiredArgsConstructor;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 public class UserUseCase {
@@ -34,5 +37,9 @@ public class UserUseCase {
     private User normalizedEmail(User user){
         user.setEmail(user.getEmail().toLowerCase());
         return user;
+    }
+
+    public Flux<User> getUsersByEmails(List<String> emails) {
+        return userRepository.findByEmails(emails);
     }
 }

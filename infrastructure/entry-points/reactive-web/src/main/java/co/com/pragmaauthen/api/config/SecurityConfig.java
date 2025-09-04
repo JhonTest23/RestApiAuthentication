@@ -25,6 +25,7 @@ public class SecurityConfig {
                 .authorizeExchange(exchange -> exchange
                         .pathMatchers("/api/v1/login").permitAll()
                         .pathMatchers("/api/v1/usuarios").hasAnyAuthority("ROLE_ADMINISTRADOR","ROLE_ASESOR")
+                        .pathMatchers("/api/v1/usuarios_emails").hasAnyAuthority("ROLE_ADMINISTRADOR","ROLE_ASESOR")
                         .pathMatchers(
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",

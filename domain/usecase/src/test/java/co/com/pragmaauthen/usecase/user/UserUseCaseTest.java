@@ -25,12 +25,12 @@ public class UserUseCaseTest {
     void saveUser_shouldSaveWhenEmailDoesNotExist() {
         // Arrange
         User newUser = new User();
-        newUser.setEmail("TEST@MAIL.COM");
+        newUser.setEmail("correo1@correo.COM");
 
         User savedUser = new User();
-        savedUser.setEmail("test@mail.com");
+        savedUser.setEmail("correo1@correo.COM");
 
-        when(userRepository.findByEmail("test@mail.com")).thenReturn(Mono.empty()); // no user with same email
+        when(userRepository.findByEmail("correo1@correo.COM")).thenReturn(Mono.empty()); // no user with same email
         when(userRepository.save(any(User.class))).thenReturn(Mono.just(savedUser));
 
         // Act
@@ -38,10 +38,10 @@ public class UserUseCaseTest {
 
         // Assert
         StepVerifier.create(result)
-                .expectNextMatches(user -> user.getEmail().equals("test@mail.com")) // normalized
+                .expectNextMatches(user -> user.getEmail().equals("correo1@correo.COM")) // normalized
                 .verifyComplete();
 
-        verify(userRepository).findByEmail("test@mail.com");
+        verify(userRepository).findByEmail("correo1@correo.COM");
         verify(userRepository).save(any(User.class));
     }
 
@@ -49,13 +49,13 @@ public class UserUseCaseTest {
     void saveUser_shouldThrowErrorWhenEmailAlreadyExists() {
         // Arrange
         User existingUser = new User();
-        existingUser.setEmail("test@mail.com");
+        existingUser.setEmail("correo1@correo.COM");
 
         User newUser = new User();
-        newUser.setEmail("test@mail.com");
+        newUser.setEmail("correo1@correo.COM");
 
         // 👉 Mock repository to return a user (duplicate found)
-        when(userRepository.findByEmail("test@mail.com"))
+        when(userRepository.findByEmail("correo1@correo.COM"))
                 .thenReturn(Mono.just(existingUser));
 
         // Act

@@ -16,6 +16,8 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 import org.springframework.http.HttpStatus;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class Handler {
@@ -52,10 +54,19 @@ public class Handler {
                             credential.getEmail(),
                             credential.getFullname()
                     );
-                    return ServerResponse.ok().bodyValue(new JWToken(token,credential.getDocumentoIdentidad(),credential.getRole()));
+                    return ServerResponse.ok().bodyValue(new JWToken(token,credential.getDocumentoIdentidad(),credential.getRole(), credential.getEmail()));
                 })
                 .onErrorResume(IllegalArgumentException.class, e ->
                         ServerResponse.status(HttpStatus.CONFLICT).bodyValue(e.getMessage())
                 );
+    }
+
+    public Mono<ServerResponse> getUsersByEmails(ServerRequest request) {
+        return request.bodyToMono(List.class) // Expect a JSON array of emails
+                .flatMapMany(userUseCase::getUsersByEmails)
+                .collectList()
+                .flatMap(users -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .bodyValue(users));
     }
 }

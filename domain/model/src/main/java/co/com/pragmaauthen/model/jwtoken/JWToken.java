@@ -11,4 +11,5 @@ public class JWToken {
     private String token;
     private String documentoIdentidad;
     private String rol;
+    private String email;
 }
