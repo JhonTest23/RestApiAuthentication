@@ -3,6 +3,7 @@ package co.com.pragmaauthen.api.config;
 import co.com.pragmaauthen.api.Jwt.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
@@ -23,9 +24,9 @@ public class SecurityConfig {
                 .formLogin(ServerHttpSecurity.FormLoginSpec::disable)   // disable form login
                 .logout(ServerHttpSecurity.LogoutSpec::disable)         // disable logout
                 .authorizeExchange(exchange -> exchange
-                        .pathMatchers("/api/v1/login").permitAll()
-                        .pathMatchers("/api/v1/usuarios").hasAnyAuthority("ROLE_ADMINISTRADOR","ROLE_ASESOR")
-                        .pathMatchers("/api/v1/usuarios_emails").hasAnyAuthority("ROLE_ADMINISTRADOR","ROLE_ASESOR")
+                        .pathMatchers(HttpMethod.POST,"/api/v1/login").permitAll()
+                        .pathMatchers(HttpMethod.POST,"/api/v1/usuarios").hasAnyAuthority("ROLE_ADMINISTRADOR","ROLE_ASESOR")
+                        .pathMatchers(HttpMethod.POST,"/api/v1/usuarios_emails").hasAnyAuthority("ROLE_ADMINISTRADOR","ROLE_ASESOR")
                         .pathMatchers(
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",

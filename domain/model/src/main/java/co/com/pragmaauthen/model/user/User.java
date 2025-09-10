@@ -1,6 +1,7 @@
 package co.com.pragmaauthen.model.user;
 import lombok.*;
 
+@EqualsAndHashCode
 @Builder(toBuilder = true)
 @Getter
 @Setter

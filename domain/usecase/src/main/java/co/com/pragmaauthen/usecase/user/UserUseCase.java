@@ -12,14 +12,6 @@ import java.util.List;
 public class UserUseCase {
     private final UserRepository userRepository;
 
-//    public Mono<User> saveUser(User user) {
-//        User userNormalized = normalizedEmail(user);
-//
-//        return userRepository.findByEmail(userNormalized.getEmail())
-//                .flatMap(existing -> Mono.<User>error(new IllegalArgumentException("Email already exists")))
-//                .switchIfEmpty(userRepository.save(userNormalized));
-//    }
-
     public Mono<User> saveUser(User user) {
         User userNormalized = normalizedEmail(user);
 
